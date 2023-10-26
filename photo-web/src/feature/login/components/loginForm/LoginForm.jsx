@@ -3,10 +3,11 @@ import InputComponent from "../../../../components/inputFiled/InputComponent";
 import "./loginForm.scss";
 import { FormGroup } from "reactstrap";
 import ButtonComponent from "../../../../components/button";
+import { Link } from "react-router-dom";
 
-export default function LoginForm({ onSubmit, validationSchema }) {
+export default function LoginForm({ onSubmit, validationSchema, themeDark }) {
   return (
-    <div className="form-login">
+    <div className={`form-login ${themeDark ? "form-login-theme-dark" : ""}`}>
       <Formik
         initialValues={{ userName: "", password: "" }}
         onSubmit={onSubmit}
@@ -39,7 +40,7 @@ export default function LoginForm({ onSubmit, validationSchema }) {
         }}
       </Formik>
       <div>
-        <a href="/register">Register a new account!!</a>
+        <Link to={"/register"}>Register a new account!!</Link>
       </div>
     </div>
   );

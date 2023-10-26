@@ -1,0 +1,40 @@
+.switch-button {
+  padding: 10px;
+  .check {
+    display: none;
+  }
+  .track-button {
+    width: 3rem;
+    background-color: #e4e0e0;
+    position: relative;
+    height: 15px;
+    border-radius: 10px;
+    .button {
+      position: absolute;
+      background-color: #eeecec;
+      top: -6px;
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      aspect-ratio: 1;
+      width: 28px;
+      justify-content: center;
+      border-radius: 50%;
+      box-shadow: 0px 0px 10px #757474;
+      left: 0;
+      cursor: pointer;
+      transition: left 700ms;
+      &:hover {
+        box-shadow: 0px 0px 15px #2cadce;
+      }
+    }
+  }
+  .checked {
+    background-color: #e4e0e0;
+    .button {
+      background-color: #424141;
+      left: 20px;
+      color: #eedfdf;
+    }
+  }
+}

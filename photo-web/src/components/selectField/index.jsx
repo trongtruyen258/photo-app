@@ -1,6 +1,7 @@
 import { ErrorMessage } from "formik";
 import Select from "react-select";
 import { FormFeedback, FormGroup, Label } from "reactstrap";
+import "./style.scss";
 
 export default function SelectComponent({
   field,
@@ -20,7 +21,7 @@ export default function SelectComponent({
   };
 
   return (
-    <FormGroup>
+    <FormGroup className="select-custom">
       <Label for={name}>{label}</Label>
       <Select
         id={name}

@@ -10,3 +10,9 @@ export const photoSelectedAction = (photo) => {
     payload: photo,
   };
 };
+export const themeDarkAction = (isDark) => {
+  return {
+    type: "SET_THEME_DARK",
+    payload: isDark,
+  };
+};

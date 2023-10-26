@@ -1,0 +1,24 @@
+.theme-dark {
+  animation: changeTheme 1s;
+  @keyframes changeTheme {
+    from {
+      background-color: #fff;
+    }
+    to {
+      background-color: #3b3838;
+    }
+  }
+  background-color: #3b3838;
+  min-height: 100vh;
+}
+.theme-light {
+  animation: changeThemeLight 1s;
+  @keyframes changeThemeLight {
+    from {
+      background-color: #3b3838;
+    }
+    to {
+      background-color: #fff;
+    }
+  }
+}

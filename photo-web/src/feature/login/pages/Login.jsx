@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import configApp from "../../../firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
 export default function Login() {
   const db = getFirestore(configApp);
@@ -12,6 +13,8 @@ export default function Login() {
     userName: Yup.string().required("This field is required"),
     password: Yup.string().required("This field is required"),
   });
+  const { themeDark } = useSelector((state) => state.photo);
+
   const onSubmitLogin = async (values) => {
     const usersSnapshot = await getDocs(collection(db, "users"));
     const listUser = usersSnapshot.docs.map((doc) => ({ ...doc.data() }));
@@ -34,8 +37,14 @@ export default function Login() {
   };
   return (
     <div style={{ textAlign: "center" }}>
-      <h2>Login to your account!</h2>
-      <LoginForm onSubmit={onSubmitLogin} validationSchema={validationSchema} />
+      <h2 style={{ color: `${themeDark ? "#f0eaea" : "black"}` }}>
+        Login to your account!
+      </h2>
+      <LoginForm
+        themeDark={themeDark}
+        onSubmit={onSubmitLogin}
+        validationSchema={validationSchema}
+      />
     </div>
   );
 }

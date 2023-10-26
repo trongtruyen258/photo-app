@@ -14,12 +14,13 @@ export default function PhotoForm({
   validationSchema,
   options,
   titleButton,
+  themeDark,
 }) {
   // const [initialValues, setInitialValues] = useState({});
-  useEffect(() => {
-    // setInitialValues(initValues);
-    console.log(22222, initValues);
-  }, [initValues]);
+  // useEffect(() => {
+  //   // setInitialValues(initValues);
+  //   console.log(22222, initValues);
+  // }, [initValues]);
   if (!initValues) return null;
   // const dataInit = {
   //   title: "abc",
@@ -27,7 +28,7 @@ export default function PhotoForm({
   //   imgUrl: "",
   // };
   return (
-    <div className="photo-form">
+    <div className={`photo-form ${themeDark ? "photo-form-theme-dark" : ""}`}>
       <Formik
         initialValues={initValues}
         onSubmit={onSubmit}
@@ -56,7 +57,7 @@ export default function PhotoForm({
                 label="Photo"
                 noImage={noImage}
               />
-              <FormGroup>
+              <FormGroup className="button">
                 <ButtonComponent title={titleButton} color={"primary"} />
               </FormGroup>
             </Form>

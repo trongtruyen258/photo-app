@@ -1,18 +1,30 @@
 .photo-card {
-  width: 266px;
+  width: 100%;
   position: relative;
   margin-top: 0.5rem;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   background-color: #d4d3d3;
+  overflow: hidden;
   .photo {
     padding: 0.5rem;
     align-self: center;
+    overflow: hidden;
     img {
-      width: 250px;
-      height: 250px;
+      width: 100%;
+      max-width: 250px;
+      max-height: 250px;
       border-radius: 10px;
+      animation: zoomin 1s;
+      @keyframes zoomin {
+        0% {
+          scale: 1.5;
+        }
+        100% {
+          scale: 1;
+        }
+      }
     }
   }
   &:hover .remove-edit {
@@ -27,6 +39,18 @@
       }
       100% {
         opacity: 1;
+      }
+    }
+  }
+  &:hover img {
+    scale: 1.5;
+    animation: scale 1s;
+    @keyframes scale {
+      0% {
+        scale: 1;
+      }
+      100% {
+        scale: 1.5;
       }
     }
   }
@@ -55,6 +79,16 @@
     p {
       margin: 0;
       font-size: 1.25rem;
+    }
+  }
+}
+.photo-card-theme-dark {
+  background-color: #585757;
+  .photo-info {
+    border-top: 1px solid #7c7878;
+
+    p {
+      color: #f0eaea;
     }
   }
 }

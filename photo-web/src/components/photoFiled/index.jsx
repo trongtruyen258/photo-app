@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function PhotoFiled({ field, form, label, noImage }) {
   const { errors, touched } = form;
-  const { name, value, onBlur, onChange } = field;
+  const { name, value, onBlur } = field;
   const showErr = errors[name] && touched[name];
   const [imgUrl, setImgUrl] = useState("");
   useEffect(() => {
@@ -23,9 +23,8 @@ export default function PhotoFiled({ field, form, label, noImage }) {
   return (
     <FormGroup>
       <Label for={name}>{label}</Label>
-      <div id={name}>
+      <div id={name} onBlur={onBlur}>
         <ButtonComponent
-          onBlur={onBlur}
           title={"Random Photo"}
           color={"primary"}
           outline={true}

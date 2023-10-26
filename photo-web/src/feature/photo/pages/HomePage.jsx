@@ -21,9 +21,9 @@ export default function HomePage() {
   const { listCategory } = useSelector((state) => state.category);
   const { listPhoto } = useSelector((state) => state.photo);
   const dispatch = useDispatch();
-  const db = getFirestore(configApp);
   const isLogin = JSON.parse(localStorage.getItem("isLogin"));
 
+  const db = getFirestore(configApp);
   const fetchData = async () => {
     const categoriesSnapshot = await getDocs(collection(db, "categories"));
     const listCategory = categoriesSnapshot.docs.map((doc) => ({

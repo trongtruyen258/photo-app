@@ -1,16 +1,27 @@
-import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Images } from "../../../constants/images";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import Header from "../../../components/header/Header";
 import Banner from "../../../components/banner/Banner";
 import ButtonComponent from "../../../components/button";
 import { Container } from "reactstrap";
 import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import "./style.scss";
+import { themeDarkAction } from "../../../redux/action/photoAction/photoAction";
 
 export default function MainPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const isLogin = JSON.parse(localStorage.getItem("isLogin"));
+  const dispatch = useDispatch();
+  const { themeDark } = useSelector((state) => state.photo);
+  // const date = new Date().getHours();
+  // console.log(date);
+  useLayoutEffect(() => {
+    if (new Date().getHours() >= 18) dispatch(themeDarkAction(true));
+  }, [dispatch]);
+
   useEffect(() => {
     if (location.pathname === "/") {
       navigate("/home");
@@ -27,11 +38,12 @@ export default function MainPage() {
     }
   };
   return (
-    <div>
+    <div className={`${themeDark ? "theme-dark" : "theme-light"}`}>
       <Header
         location={location}
         isLogin={isLogin}
         clickLogOut={handleClickLogOut}
+        dispatch={dispatch}
       />
       <Banner title="Your awesome photos 🎉" imgUrl={Images.banner} />
       <Container>

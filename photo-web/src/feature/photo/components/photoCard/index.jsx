@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import ButtonComponent from "../../../../components/button";
 import "./photoCard.scss";
 
@@ -7,8 +8,10 @@ export default function PhotoCard({
   clickDelete,
   clickEdit,
 }) {
+  const { themeDark } = useSelector((state) => state.photo);
+
   return (
-    <div className="photo-card">
+    <div className={`photo-card ${themeDark ? "photo-card-theme-dark" : ""}`}>
       <div className="photo">
         <img src={photoCard.imgUrl} alt="card" />
       </div>

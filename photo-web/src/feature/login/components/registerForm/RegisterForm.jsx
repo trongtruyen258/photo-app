@@ -4,9 +4,13 @@ import { FormGroup } from "reactstrap";
 import ButtonComponent from "../../../../components/button";
 import "./registerForm.scss";
 
-export default function RegisterForm({ onSubmit, validationSchema }) {
+export default function RegisterForm({
+  onSubmit,
+  validationSchema,
+  themeDark,
+}) {
   return (
-    <div className="register-form">
+    <div className={`register-form ${themeDark ? "register-form-dark" : ""}`}>
       <Formik
         initialValues={{ fullName: "", userName: "", password: "" }}
         validationSchema={validationSchema}

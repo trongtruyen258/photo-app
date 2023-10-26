@@ -25,6 +25,7 @@ export default function AddEditPage() {
   const db = getFirestore(configApp);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { themeDark } = useSelector((state) => state.photo);
 
   const fetchDataById = async (id) => {
     const item = doc(db, "photos", id);
@@ -35,13 +36,13 @@ export default function AddEditPage() {
     setInitValues({
       title: photoSelected.title,
       categoryId: photoSelected.categoryId,
-      photo: photoSelected.imgUrl,
+      imgUrl: photoSelected.imgUrl,
     });
   };
 
-  useEffect(() => {
-    console.log(1111, initValues);
-  }, [initValues]);
+  // useEffect(() => {
+  //   console.log(1111, initValues);
+  // }, [initValues]);
   useEffect(() => {
     if (param.id) {
       fetchDataById(param.id);
@@ -79,15 +80,20 @@ export default function AddEditPage() {
   });
   return (
     <div style={{ textAlign: "center" }}>
-      <h2>{titleForm}</h2>
-      <PhotoForm
-        initValues={initValues}
-        onSubmit={onSubmitForm}
-        noImage={Images.noImage}
-        validationSchema={validationSchema}
-        options={listCategory}
-        titleButton={titleButton}
-      />
+      <h2 style={{ color: `${themeDark ? "#f0eaea" : "black"}` }}>
+        {titleForm}
+      </h2>
+      {JSON.stringify(initValues) !== "{}" && (
+        <PhotoForm
+          initValues={initValues}
+          onSubmit={onSubmitForm}
+          noImage={Images.noImage}
+          validationSchema={validationSchema}
+          options={listCategory}
+          titleButton={titleButton}
+          themeDark={themeDark}
+        />
+      )}
     </div>
   );
 }
