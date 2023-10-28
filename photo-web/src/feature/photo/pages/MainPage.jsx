@@ -16,8 +16,6 @@ export default function MainPage() {
   const isLogin = JSON.parse(localStorage.getItem("isLogin"));
   const dispatch = useDispatch();
   const { themeDark } = useSelector((state) => state.photo);
-  // const date = new Date().getHours();
-  // console.log(date);
   useLayoutEffect(() => {
     if (new Date().getHours() >= 18) dispatch(themeDarkAction(true));
   }, [dispatch]);
@@ -45,7 +43,7 @@ export default function MainPage() {
         clickLogOut={handleClickLogOut}
         dispatch={dispatch}
       />
-      <Banner title="Your awesome photos 🎉" imgUrl={Images.banner} />
+      <Banner title="Your awesome photos 🎉" imgUrl={themeDark?Images.bannerDark:Images.bannerLight} />
       <Container>
         {location.pathname === "/home" && (
           <ButtonComponent

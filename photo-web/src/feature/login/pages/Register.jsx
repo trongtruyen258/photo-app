@@ -1,14 +1,13 @@
 import { useSelector } from "react-redux";
 import RegisterForm from "../components/registerForm/RegisterForm";
 import * as Yup from "yup";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
-import configApp from "../../../firebase/firebaseConfig";
+import { addDoc, collection} from "firebase/firestore";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { db } from "../../../service/api";
 
 export default function Register() {
   const { themeDark } = useSelector((state) => state.photo);
-  const db = getFirestore(configApp);
   const navigate = useNavigate();
 
   const validationSchema = Yup.object({

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect,  useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import PhotoForm from "../components/photoForm";
 import { Images } from "../../../constants/images";
@@ -9,12 +9,12 @@ import {
   collection,
   doc,
   getDoc,
-  getFirestore,
   setDoc,
 } from "firebase/firestore";
-import configApp from "../../../firebase/firebaseConfig";
-import { photoSelectedAction } from "../../../redux/action/photoAction/photoAction";
 import Swal from "sweetalert2";
+import { categoriesAction } from "../../../redux/action/categoryAction/categoryAction";
+import { getCategories } from "../../../service/getCategories";
+import { db } from "../../../service/api";
 
 export default function AddEditPage() {
   const [titleForm, setTitleForm] = useState("");
@@ -22,7 +22,6 @@ export default function AddEditPage() {
   const [titleButton, setTitleButton] = useState("");
   const { listCategory } = useSelector((state) => state.category);
   const param = useParams();
-  const db = getFirestore(configApp);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { themeDark } = useSelector((state) => state.photo);
@@ -31,7 +30,7 @@ export default function AddEditPage() {
     const item = doc(db, "photos", id);
     const itemSnapshot = await getDoc(item);
     const photoSelected = { id: itemSnapshot.id, ...itemSnapshot.data() };
-    dispatch(photoSelectedAction(photoSelected));
+   
     setTitleForm(`Update for photo ${photoSelected.title}`);
     setInitValues({
       title: photoSelected.title,
@@ -40,10 +39,11 @@ export default function AddEditPage() {
     });
   };
 
-  // useEffect(() => {
-  //   console.log(1111, initValues);
-  // }, [initValues]);
   useEffect(() => {
+    if (listCategory) {
+    getCategories().then(res=>{dispatch(categoriesAction(res))})
+      
+    }
     if (param.id) {
       fetchDataById(param.id);
       setTitleButton("Update");
@@ -52,6 +52,7 @@ export default function AddEditPage() {
       setInitValues({ title: "", categoryId: null, photo: "" });
       setTitleButton("Add to album");
     }
+    
   }, [param]);
   const onSubmitForm = async (values) => {
     if (param.id) {
@@ -83,7 +84,7 @@ export default function AddEditPage() {
       <h2 style={{ color: `${themeDark ? "#f0eaea" : "black"}` }}>
         {titleForm}
       </h2>
-      {JSON.stringify(initValues) !== "{}" && (
+      {JSON.stringify(initValues) !== "{}" && JSON.stringify(listCategory)!=="[]" && (
         <PhotoForm
           initValues={initValues}
           onSubmit={onSubmitForm}

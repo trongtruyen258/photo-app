@@ -2,7 +2,7 @@
   animation: changeTheme 1s;
   @keyframes changeTheme {
     from {
-      background-color: #fff;
+      background-color: #dbdada;
     }
     to {
       background-color: #3b3838;
@@ -10,6 +10,9 @@
   }
   background-color: #3b3838;
   min-height: 100vh;
+  p{
+    color: #c7c5c5;
+  }
 }
 .theme-light {
   animation: changeThemeLight 1s;
@@ -18,7 +21,8 @@
       background-color: #3b3838;
     }
     to {
-      background-color: #fff;
+      background-color: #dbdada;
     }
   }
+  background-color: #dbdada;
 }

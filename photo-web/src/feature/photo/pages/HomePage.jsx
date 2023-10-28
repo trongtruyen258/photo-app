@@ -5,16 +5,16 @@ import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
-  collection,
   deleteDoc,
   doc,
-  getDocs,
   getFirestore,
 } from "firebase/firestore";
 import { useEffect } from "react";
 import configApp from "../../../firebase/firebaseConfig";
 import { categoriesAction } from "../../../redux/action/categoryAction/categoryAction";
 import { listPhotoAction } from "../../../redux/action/photoAction/photoAction";
+import { getPhotos } from "../../../service/getPhotos";
+import { getCategories } from "../../../service/getCategories";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -25,18 +25,8 @@ export default function HomePage() {
 
   const db = getFirestore(configApp);
   const fetchData = async () => {
-    const categoriesSnapshot = await getDocs(collection(db, "categories"));
-    const listCategory = categoriesSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-    const photosSnapshot = await getDocs(collection(db, "photos"));
-    const listPhoto = photosSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-    dispatch(categoriesAction(listCategory));
-    dispatch(listPhotoAction(listPhoto));
+    getPhotos().then(res=>{dispatch(listPhotoAction(res))})
+    getCategories().then(res=>{dispatch(categoriesAction(res))})
   };
   useEffect(() => {
     fetchData();

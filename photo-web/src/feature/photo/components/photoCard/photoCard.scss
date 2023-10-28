@@ -1,11 +1,11 @@
 .photo-card {
-  width: 100%;
+  width: fit-content;
   position: relative;
   margin-top: 0.5rem;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  background-color: #d4d3d3;
+  background-color: #bbb9b9;
   overflow: hidden;
   .photo {
     padding: 0.5rem;
@@ -86,9 +86,5 @@
   background-color: #585757;
   .photo-info {
     border-top: 1px solid #7c7878;
-
-    p {
-      color: #f0eaea;
-    }
   }
 }

@@ -5,7 +5,6 @@ import PhotoFiled from "../../../../components/photoFiled";
 import { FormGroup } from "reactstrap";
 import ButtonComponent from "../../../../components/button";
 import "./photoForm.scss";
-import { useEffect, useState } from "react";
 
 export default function PhotoForm({
   initValues,
@@ -16,17 +15,7 @@ export default function PhotoForm({
   titleButton,
   themeDark,
 }) {
-  // const [initialValues, setInitialValues] = useState({});
-  // useEffect(() => {
-  //   // setInitialValues(initValues);
-  //   console.log(22222, initValues);
-  // }, [initValues]);
-  if (!initValues) return null;
-  // const dataInit = {
-  //   title: "abc",
-  //   categoryId: 2,
-  //   imgUrl: "",
-  // };
+  
   return (
     <div className={`photo-form ${themeDark ? "photo-form-theme-dark" : ""}`}>
       <Formik
