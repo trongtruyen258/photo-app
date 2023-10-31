@@ -43,7 +43,10 @@ export default function MainPage() {
         clickLogOut={handleClickLogOut}
         dispatch={dispatch}
       />
-      <Banner title="Your awesome photos 🎉" imgUrl={themeDark?Images.bannerDark:Images.bannerLight} />
+      <Banner
+        title="Your awesome photos 🎉"
+        imgUrl={themeDark ? Images.bannerDark : Images.bannerLight}
+      />
       <Container>
         {location.pathname === "/home" && (
           <ButtonComponent

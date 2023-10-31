@@ -10,7 +10,7 @@
   }
   background-color: #3b3838;
   min-height: 100vh;
-  p{
+  p {
     color: #c7c5c5;
   }
 }
@@ -25,4 +25,13 @@
     }
   }
   background-color: #dbdada;
+}
+.bnt-show {
+  margin: 0.5rem auto !important;
+  cursor: pointer;
+  width: fit-content !important;
+  font-weight: bold;
+  &:hover {
+    color: #422dff;
+  }
 }

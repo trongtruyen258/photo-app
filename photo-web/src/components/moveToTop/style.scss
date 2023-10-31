@@ -1,0 +1,17 @@
+.bnt-move-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  button {
+    background-color: #704d4d;
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+  }
+}
